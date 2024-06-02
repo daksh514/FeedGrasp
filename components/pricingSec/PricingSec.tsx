@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import React from "react";
+import BuyButton from "../BuyButton";
 
 function PricingSec() {
   const featuresList = [
@@ -57,10 +58,8 @@ function PricingSec() {
                 ))}
                 {/* <li className="flex gap-3"><Check className="text-green-400"/> Unlimited Boards</li> */}
               </ul>
-              <div className="card-actions w-full">
-                <button className="btn btn-primary w-full">Buy Now</button>
-              </div>
-              <p className="font-semibold text-center">It's for lifetime, no monthly payments!</p>
+            <BuyButton variantId="401668"/>
+              <p className="font-semibold text-center">It&apos;s for lifetime, no monthly payments!</p>
 
             </div>
           </div>
@@ -80,10 +79,8 @@ function PricingSec() {
                 ))}
                 {/* <li className="flex gap-3"><Check className="text-green-400"/> Unlimited Boards</li> */}
               </ul>
-              <div className="card-actions w-full">
-                <button className="btn btn-primary w-full">Buy Now</button>
-              </div>
-              <p className="font-semibold text-center">It's for lifetime, no monthly payments!</p>
+              <BuyButton variantId="401755"/>
+              <p className="font-semibold text-center">It&apos;s for lifetime, no monthly payments!</p>
               
             </div>
           </div>

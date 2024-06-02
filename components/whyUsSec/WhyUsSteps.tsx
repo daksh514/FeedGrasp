@@ -31,7 +31,7 @@ function WhyUsSteps() {
       </div>
       <div className="widthContainer flex gap-3 mt-12 max-md:flex-col">
         {stepsContent.map((content, index) => (
-          <div className="card max-w-96 bg-base-100 shadow-xl py-5 max-md:mx-auto">
+          <div className="card max-w-96 bg-base-100 shadow-xl py-5 max-md:mx-auto" key={index}>
             <div className="badge badge-ghost px-4 rounded-md  absolute -top-1 -left-2">
               Step {index + 1}
             </div>
@@ -43,7 +43,7 @@ function WhyUsSteps() {
         ))}
       </div>
       <p className="text-center text-xs mt-5 font-semibold opacity-40 flex justify-center gap-2 items-center">
-        Yes, It's that simple!
+        Yes, I&apos;'s that simple!
       </p>
     </div>
   );

@@ -9,7 +9,7 @@ function WhyUs() {
       <div className="widthContainer">
         <div>
           <WhyCard />
-          <p className="text-center text-xs mt-5 font-semibold opacity-40 flex justify-center gap-2 items-center">We'll do all that for you<ArrowDown className="h-auto w-4" /></p>
+          <p className="text-center text-xs mt-5 font-semibold opacity-40 flex justify-center gap-2 items-center">We&apos;ll do all that for you<ArrowDown className="h-auto w-4" /></p>
          
         </div>
       </div>

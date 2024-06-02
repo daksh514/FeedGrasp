@@ -14,9 +14,7 @@ async function NavBar() {
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  if (!user) {
-    console.log("no user");
-  }
+
 
   return (
     <div>
