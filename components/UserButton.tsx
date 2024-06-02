@@ -1,4 +1,5 @@
 import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components'
+import Image from 'next/image';
 import React from 'react'
 
 interface userImports{
@@ -15,10 +16,11 @@ function UserButton({avatar}: userImports) {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
-                <img
+              <div className="w-10 rounded-full relative">
+                <Image
                   alt="Tailwind CSS Navbar component"
                   src={avatar}
+                  fill
                 />
               </div>
             </div>

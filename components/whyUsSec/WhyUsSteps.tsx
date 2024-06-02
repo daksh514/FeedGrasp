@@ -43,7 +43,7 @@ function WhyUsSteps() {
         ))}
       </div>
       <p className="text-center text-xs mt-5 font-semibold opacity-40 flex justify-center gap-2 items-center">
-        Yes, I&apos;'s that simple!
+        Yes, It&apos;s that simple!
       </p>
     </div>
   );
