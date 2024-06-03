@@ -44,7 +44,6 @@ export async function POST(req: NextRequest) {
         })
 
         const checkoutUrl = response.data.data.attributes.url
-        // console.log(response.data);
         return Response.json(checkoutUrl, { status: 200 })
 
     } catch (error) {

@@ -19,7 +19,7 @@ const stepsContent = [
 
 function WhyUsSteps() {
   return (
-    <div className="mt-10 bg-base-300 min-h-[65vh] py-10 relative max-md:widthContainer">
+    <div className="mt-10 bg-base-300 h-[65vh] py-10 relative max-md:widthContainer max-h-[500px] flex flex-col ">
       <div className="flex items-center flex-col md:w-2/4 mx-auto ">
         <h1 className="text-3xl font-extrabold w-full  mx-auto text-center max-md:text-2xl">
           Start collecting feedbacks in 3 easy steps

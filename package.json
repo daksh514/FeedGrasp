@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && <actual-build-command>",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.2.13",
@@ -17,8 +18,10 @@
     "react": "^18",
     "react-dom": "^18",
     "react-scroll": "^1.9.0",
+    "react-top-loading-bar": "^2.3.1",
     "server-only": "^0.0.1",
-    "theme-change": "^2.5.0"
+    "theme-change": "^2.5.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

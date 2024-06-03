@@ -14,7 +14,6 @@ function BuyButton({variantId}:{variantId:string}) {
         productId: variantId,
       });
 
-      console.log(res);
       
 
       window.open(res.data, "_blank");

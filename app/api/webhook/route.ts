@@ -21,7 +21,6 @@ export async function POST(req: Request) {
       throw new Error("Invalid signature.");
     }
 
-    // console.log(body);
 
     // Logic according to event
     if (eventType === "order_created") {
