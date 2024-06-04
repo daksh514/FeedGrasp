@@ -1,7 +1,9 @@
 import prisma from "@/utils/db";
 import crypto from "crypto";
+import { unstable_noStore as noStore} from "next/cache";
 
 export async function POST(req: Request) {
+  noStore()
   try {
     // Catch the event type
     const clonedReq = req.clone();

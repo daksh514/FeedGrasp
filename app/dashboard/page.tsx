@@ -3,8 +3,10 @@ import Navbar from '@/components/Dashboard/Navbar'
 import prisma from '@/utils/db'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import React from 'react'
+import { unstable_noStore as noStore} from "next/cache";
 
 async function page() {
+  noStore()
   const {getUser} = getKindeServerSession()
   const user = await getUser()
   const boards = await prisma.board.findMany({

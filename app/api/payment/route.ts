@@ -1,12 +1,14 @@
 import { lemonSqeezyApiInstance } from "@/utils/axios";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextRequest } from "next/server";
+import { unstable_noStore as noStore} from "next/cache";
 
 export const dynamic = "force-dynamic";
 
 
 
 export async function POST(req: NextRequest) {
+    noStore()
     const {getUser} = getKindeServerSession()
     const user = await getUser()
 
