@@ -7,7 +7,7 @@ import SettingsBtn from "./SettingsBtn";
 function BoardCard({ title, link, id }: { title: string; link: string, id:string }) {
   return (
     <div>
-      <div className="card w-auto bg-base-300 shadow-xl min-h-0 max-sm:mx-auto">
+      <div className="card w-auto bg-base-300 shadow-xl min-h-0 max-sm:mx-autob">
         <div className="card-body items-start text-center py-5">
           <h2 className="card-title leading-normal my-0">{title}</h2>
           <div className="divider my-0 h-1"></div>
