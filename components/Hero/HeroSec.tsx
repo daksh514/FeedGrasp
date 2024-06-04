@@ -20,7 +20,7 @@ function HeroSec() {
         <div className="w-full h-full flex items-center justify-center ">
           <div className="bg-white relative w-4/5 aspect-square rounded-xl max-md:max-w-md">
             <Image
-              src={"/images/suggestCard.png"}
+              src={"/Images/suggestCard.png"}
               fill
               alt="ss"
               className="rounded-lg w-2/4 h-auto aspect-square"

@@ -8,7 +8,7 @@ function layout({children}:{children: React.ReactNode}) {
         <button className='fixed bottom-8 right-8  '>
 
         <div className='flex gap-2 items-center bg-base-300 p-2 rounded-lg'>
-            <Image src="/images/icon.png" width={40} height={40} alt="" className='rounded-md'/>
+            <Image src="/Images/icon.png" width={40} height={40} alt="" className='rounded-md'/>
             <div className="flex flex-col justify-center">
 
             <h1 className='leading-none'>FeedGrasp</h1>
