@@ -1,7 +1,9 @@
 "use server"
 import prisma from '@/utils/db';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { revalidatePath } from 'next/cache';
 import * as z from 'zod'
+
 
 const boardSchema = z.object({
     title: z.string().min(1, {
@@ -34,16 +36,33 @@ export async function createBoard(formData: FormData) {
     return JSON.stringify({
         status: 'success',
         message: 'Successfully created board',
-        boardId: data.id 
+        boardId: data.id
     })
 
 }
 
 export async function deleteBoard(boardId: string) {
-    await prisma.board.delete({
-        where: {
-            id: boardId
-        }
-    })
+    try {
+        await prisma.response.deleteMany({
+            where: {
+                boardId: boardId
+            }
+        })
+        await prisma.board.delete({
+            where: {
+                id: boardId
+            }
+        })
+
+        
+    } catch (error) {
+        console.log(error);
+    }
+
+
+    revalidatePath(`/dashboard`)
+
+
+
 
 }

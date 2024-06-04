@@ -13,7 +13,6 @@ async function page() {
       id: true,
     }
   })
-  console.log(boards);
   return (
     <div className='widthContainer py-8'>
       <Navbar avatar={user?.picture as string}/>

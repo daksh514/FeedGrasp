@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import macbookIphone from "../assets/images/suggestCard.png";
 import { ArrowDown } from "lucide-react";
 
 function HeroSec() {

@@ -9,15 +9,15 @@ function PageInfoComp({boardInfo, userData}:{boardInfo:string, userData:string})
     <div className=" pt-10">
         <div className="card w-full bg-base-300 shadow-md min-h-40 py-4 px-10 rounded-lg flex flex-col justify-between gap-6">
           <div>
-            <h1 className="text-2xl font-extrabold  max-md:text-xl">
+            <h1 className="text-2xl font-extrabold  max-md:text-lg">
               {boardData?.title}
             </h1>
-            <h1 className="text-xs font-normal to-base-content/60  max-md:text-xl">
+            <h1 className="text-md font-normal to-base-content/60  max-md:text-xs max-md:font-semibold">
               {boardData?.description}
             </h1>
           </div>
           <div className="flex justify-between items-center">
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-md:hidden">
               <Image
                 src={userInfo?.profileImage as string}
                 alt="User Image"

@@ -1,12 +1,14 @@
-'use client'
-import React, { Key,  useState } from "react";
+
+import React from "react";
 import ResponseCard from "./ResponseCard";
-function ResponsesList({ boardDataString, hidden }: { boardDataString: string, hidden: boolean}) {
+
+
+async function ResponsesList({ boardDataString, hidden }: { boardDataString: string, hidden: boolean}) {
   const responses = JSON.parse(boardDataString);
   
 
   return (
-    <div className={`${hidden ? 'hidden' : ''}`}>
+    <div className="flex flex-col gap-4">
       {responses.map((response: any, index: any) => (
         <ResponseCard key={index} responseStr={JSON.stringify(response)}/>
       ))}

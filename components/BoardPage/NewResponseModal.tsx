@@ -25,7 +25,6 @@ function NewResponseModal({boardId, findResponses}:{boardId:string, findResponse
       setMessage(resJson.message);
       setTitle("");
       setDescription("");
-      window.location.reload()
 
     }
   };

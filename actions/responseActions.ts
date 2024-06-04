@@ -1,6 +1,7 @@
 "use server"
 import prisma from '@/utils/db';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { revalidatePath } from 'next/cache';
 import * as z from 'zod'
 
 const boardSchema = z.object({
@@ -28,10 +29,6 @@ export async function createResponse(formData: FormData) {
             error: validate.error
         })
     }
-
-
-
-
     const data = await prisma.response.create({
         data: {
             title: validate.data.title,
@@ -40,13 +37,38 @@ export async function createResponse(formData: FormData) {
         }
     })
 
-
-
-
+    revalidatePath(`board/${boardData.boardId}`)
     return JSON.stringify({
         status: 'success',
         message: 'Response added successfully',
         responseId: data.id
     })
+}
+
+export async function votingSystem(resId: string){
+   const {getUser} = getKindeServerSession()
+   const user = await getUser()
+   if(user){
+    await prisma.response.update({
+        where: {
+            id: resId
+        },
+        data: {
+            upvotes: {
+                increment: 1
+            },
+            upvotedBy: {
+                connect: {
+                    id: user?.id
+                }
+            }
+
+        }
+    })
+   } else {
+    throw new Error("You cannot vote as you are not authenticated")
+   }
+        
+    
 
 }

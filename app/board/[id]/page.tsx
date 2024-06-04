@@ -33,6 +33,8 @@ async function page({ params }: { params: { id: string } }) {
     const responses = await prisma.response.findMany({
       where: {
           boardId: boardData?.id as string
+      }, orderBy: {
+        createdAt: "desc"
       }
     })
     return responses
@@ -41,12 +43,15 @@ async function page({ params }: { params: { id: string } }) {
   const responses = await findResponses()
 
   return (
-    <div className="widthContainer overflow-x-hidden">
+    <div className=" overflow-x-hidden bg-white min-h-screen">
+      <div className="widthContainer pb-10">
+        
       <PageInfoComp
         boardInfo={JSON.stringify(boardData)}
         userData={JSON.stringify(userInfo)}
       />
       <ResponsesSec boardDataString={JSON.stringify(boardData)} findResponses={findResponses} responsesJson={JSON.stringify(responses)}/>
+      </div>
     </div>
   );
 }

@@ -1,15 +1,12 @@
-'use client'
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import NewResponseModal from "./NewResponseModal";
 import ResponsesList from "./ResponsesList";
 
 function ResponsesSec({ boardDataString, responsesJson, findResponses }: { boardDataString: string, responsesJson: string, findResponses: any }) {
   const boardData = JSON.parse(boardDataString);
   const responses = JSON.parse(responsesJson);
-  const [responsesState, setResponsesState] = useState({});
   
-  useEffect(() => {
-  }, [responsesState]);
   return (
     <div>
       

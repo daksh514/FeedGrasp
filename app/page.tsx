@@ -1,4 +1,6 @@
 import BuyButton from "@/components/BuyButton";
+import FAQSec from "@/components/FaqSec/FAQSec";
+import Footer from "@/components/Footer";
 import HeroSec from "@/components/Hero/HeroSec";
 import NavBar from "@/components/NavBar";
 import ThemeChange from "@/components/ThemeChange";
@@ -16,7 +18,8 @@ export default function Home() {
       </div>
       <WhyUs/>
       <PricingSec/>
-      <ThemeChange />
+      <FAQSec/>
+      <Footer/>
     </div>
   );
 }

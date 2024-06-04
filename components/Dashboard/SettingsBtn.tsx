@@ -7,7 +7,6 @@ import React from 'react'
 function SettingsBtn({boardId}:{boardId:string}) {
     async function deleteBoardFunc(){
         await deleteBoard(boardId)
-        window.location.reload()
     }
   return (
     <div className="dropdown flex ">
