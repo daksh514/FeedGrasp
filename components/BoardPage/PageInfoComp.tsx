@@ -1,3 +1,4 @@
+'use client'
 import { Share } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
@@ -35,7 +36,18 @@ function PageInfoComp({boardInfo, userData}:{boardInfo:string, userData:string})
               </div>
             </div>
             <div>
-              <button className="btn btn-square btn-sm btn-warning rounded-md border-2 border-warning bg-opacity-60">
+              <button onClick={
+                () => {
+                  if(navigator.share){
+                    navigator.share({
+                      url: window.location.href,
+                    })
+                  } else {
+                    navigator.clipboard.writeText(window.location.href)
+                  }
+                  
+                }
+              } className="btn btn-square btn-sm btn-warning rounded-md border-2 border-warning bg-opacity-60">
                 <Share className="h-auto w-4" />
               </button>
             </div>
