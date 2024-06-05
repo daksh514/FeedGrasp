@@ -29,7 +29,7 @@ function NewButton() {
   return (
     <div>
       <button
-        className={`btn  min-h-0 h-12 `}
+        className={`btn  min-h-0 h-12 max-sm:hidden`}
         onClick={() => {
           const modal = document.getElementById("my_modal_3");
           if (modal instanceof HTMLDialogElement) {
@@ -40,6 +40,17 @@ function NewButton() {
         <PlusSquare className="p-0 h-auto w-5 max-sm:hidden " />
         New Board
       </button>
+      <button
+        className={`btn  min-h-0 h-12 sm:hidden`}
+        onClick={() => {
+          const modal = document.getElementById("my_modal_3");
+          if (modal instanceof HTMLDialogElement) {
+            modal.showModal();
+          }
+        }}
+      >
+        <PlusSquare className="p-0 h-auto w-5 max-sm:hidden " />
+        New   </button>
 
       <dialog id="my_modal_3" className="modal ">
         <div className="modal-box">

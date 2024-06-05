@@ -24,7 +24,7 @@ function FAQSec() {
         }
     ]
   return (
-    <div>
+    <div id="FAQSec">
       <div className="widthContainer">
         <div className="flex justify-between max-md:flex-col max-md:items-center max-md:gap-8">
           <div className="md:w-[38%] w-full ">

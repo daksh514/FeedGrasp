@@ -38,9 +38,10 @@ function MobileNav() {
                   className="text-lg font-semibold items-center w-full"
                 >
                   <Link
-                    href={link.href}
+                    href={link.to}
                     className={`w-full text-center items-center justify-center`}
                   >
+                    
                     {link.title}
                   </Link>
                 </li>

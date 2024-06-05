@@ -4,7 +4,8 @@ import UserButton from "../UserButton";
 
 function Navbar({avatar}:{avatar:string}) {
   return (
-    <nav className="flex items-center justify-between">
+    <div>
+<nav className="flex items-center justify-between">
       <div className="">
         <h1 className="font-semibold text-2xl">Dashboard</h1>
       </div>
@@ -13,6 +14,8 @@ function Navbar({avatar}:{avatar:string}) {
         <UserButton avatar={avatar} />
       </div>
     </nav>
+    </div>
+    
   );
 }
 

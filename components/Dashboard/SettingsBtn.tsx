@@ -9,7 +9,7 @@ function SettingsBtn({boardId}:{boardId:string}) {
         await deleteBoard(boardId)
     }
   return (
-    <div className="dropdown flex ">
+    <div className="dropdown flex max-sm:dropdown-end">
               <button
                 role="button"
                 tabIndex={0}

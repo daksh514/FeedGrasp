@@ -20,18 +20,20 @@ async function page() {
   });
   return (
     <div className="widthContainer py-8">
-      <Navbar avatar={user?.picture as string} />
-      <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-4 max-sm:grid-cols-1 ">
-        {boards.map((board) => {
-          return (
-            <BoardCard
-              key={board.id}
-              title={board.title}
-              link={board.id as string}
-              id={board.id}
-            />
-          );
-        })}
+      <div>
+        <Navbar avatar={user?.picture as string} />
+        <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-4 max-sm:grid-cols-1 ">
+          {boards.map((board) => {
+            return (
+              <BoardCard
+                key={board.id}
+                title={board.title}
+                link={board.id as string}
+                id={board.id}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
