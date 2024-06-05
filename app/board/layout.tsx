@@ -1,11 +1,14 @@
+
 import Image from 'next/image'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 function layout({children}:{children: React.ReactNode}) {
   return (
     <div>
         {children}
-        <button className='fixed bottom-8 right-8  '>
+        <Link className='fixed bottom-8 right-8  ' href={'/'}>
 
         <div className='flex gap-2 items-center bg-base-300 p-2 rounded-lg'>
             <Image src="/Images/icon.png" width={40} height={40} alt="" className='rounded-md'/>
@@ -17,7 +20,7 @@ function layout({children}:{children: React.ReactNode}) {
 
 
         </div>
-        </button>
+        </Link>
 
     </div>
   )

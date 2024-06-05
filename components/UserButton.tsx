@@ -35,7 +35,7 @@ function UserButton({avatar}: userImports) {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link href={'/settings'}>Settings</Link>
               </li>
               <div className="divider my-0"></div> 
               <li>

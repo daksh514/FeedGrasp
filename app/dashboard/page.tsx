@@ -5,6 +5,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React from "react";
 import { unstable_noStore as noStore } from "next/cache";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -15,6 +16,7 @@ async function page() {
   noStore();
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  if(!user) redirect('api/auth/login')
   const boards = await prisma.board.findMany({
     where: {
       userId: user?.id,
