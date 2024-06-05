@@ -8,13 +8,19 @@ import NewResponseBtn from "./NewResponseBtn";
 import { createResponse } from "@/actions/responseActions";
 // import FormMessage from "../extras/formMessage";
 
-function NewResponseModal({boardId, findResponses}:{boardId:string, findResponses: any}) {
+function NewResponseModal({boardId, firstName}:{boardId:string, firstName:string,}) {
+  
   const [isError, setisError] = useState(false);
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [name, setName] = useState(firstName);
   const submitAction = async (formData: FormData) => {
+    console.log(formData.get('byName'));
     formData.append('boardId', boardId)
+    if(firstName !== undefined){
+      formData.append('byName', firstName)
+    }
     const res = await createResponse(formData);
     var resJson = JSON.parse(res as string);
     if (resJson.error) {
@@ -61,6 +67,23 @@ function NewResponseModal({boardId, findResponses}:{boardId:string, findResponse
           <h3 className="font-bold text-lg">New Response</h3>
           <div className="divider my-1"></div>
           <form action={submitAction}>
+            <label className="form-control w-full ">
+              <div className="label">
+                <span className="label-text">Name</span>
+              </div>
+              <input
+                type="text"
+                placeholder="John Doe"
+                className="input input-bordered w-full "
+                name="byName"
+                onChange={(e) => {
+                  setMessage("");
+                  setName(e.target.value);
+                }}
+                value={name}
+                disabled={firstName != undefined}
+              />
+            </label>
             <label className="form-control w-full ">
               <div className="label">
                 <span className="label-text">Response Title</span>

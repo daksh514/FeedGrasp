@@ -2,6 +2,7 @@
 import prisma from '@/utils/db';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import * as z from 'zod'
 
 const boardSchema = z.object({
@@ -11,15 +12,18 @@ const boardSchema = z.object({
     description: z.string().optional(),
     boardId: z.string().min(1, {
         message: 'Board ID is required'
+    }),
+    byName: z.string().min(3, {
+        message: 'Name is required'
     })
 });
 export async function createResponse(formData: FormData) {
-    const { getUser } = getKindeServerSession()
-    const user = await getUser()
+    console.log(formData.get('byName'));
     const boardData = {
         title: formData.get('title'),
         description: formData.get('description'),
-        boardId: formData.get('boardId')
+        boardId: formData.get('boardId'),
+        byName: formData.get('byName'),
     }
     const validate = boardSchema.safeParse(boardData)
     if (!validate.success) {
@@ -33,7 +37,8 @@ export async function createResponse(formData: FormData) {
         data: {
             title: validate.data.title,
             description: validate.data.description as string,
-            boardId: validate.data.boardId
+            boardId: validate.data.boardId,
+            createdBy: validate.data.byName
         }
     })
 
@@ -66,7 +71,7 @@ export async function votingSystem(resId: string){
         }
     })
    } else {
-    throw new Error("You cannot vote as you are not authenticated")
+    redirect('/api/auth/login')
    }
         
     

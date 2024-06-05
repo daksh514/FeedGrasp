@@ -1,7 +1,9 @@
 import PageInfoComp from "@/components/BoardPage/PageInfoComp";
 import ResponsesSec from "@/components/BoardPage/ResponsesSec";
 import prisma from "@/utils/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Metadata } from "next";
+import { unstable_noStore } from "next/cache";
 import React from "react";
 
 
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 async function page({ params }: { params: { id: string } }) {
+  unstable_noStore()
   const boardData = await prisma.board.findUnique({
     where: {
       id: params.id,
@@ -62,6 +65,18 @@ async function page({ params }: { params: { id: string } }) {
 
   const responses = await findResponses()
 
+  const {getUser} = getKindeServerSession()
+  const user = await getUser()
+
+  const userData = user ? await prisma.user.findUnique({
+    where: {
+      id: user?.id
+    }, 
+    select: {
+      firstName: true
+    }
+  }) : undefined
+
   return (
     <div className=" overflow-x-hidden bg-white min-h-screen">
       <div className="widthContainer pb-10">
@@ -70,7 +85,7 @@ async function page({ params }: { params: { id: string } }) {
         boardInfo={JSON.stringify(boardData)}
         userData={JSON.stringify(userInfo)}
       />
-      <ResponsesSec boardDataString={JSON.stringify(boardData)} findResponses={findResponses} responsesJson={JSON.stringify(responses)}/>
+      <ResponsesSec boardDataString={JSON.stringify(boardData)}  responsesJson={JSON.stringify(responses)} userInfo={userData != undefined ? JSON.stringify(userData) : undefined}/>
       </div>
     </div>
   );
