@@ -1,7 +1,27 @@
 import PageInfoComp from "@/components/BoardPage/PageInfoComp";
 import ResponsesSec from "@/components/BoardPage/ResponsesSec";
 import prisma from "@/utils/db";
+import { Metadata } from "next";
 import React from "react";
+
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const boardData = await prisma.board.findUnique({
+    where: {
+      id: params.id,
+    },
+    select: {
+      title: true,
+      description: true
+    },
+  });
+  return {
+    title: boardData?.title,
+    description: boardData?.description,
+    
+  }
+
+}
 
 async function page({ params }: { params: { id: string } }) {
   const boardData = await prisma.board.findUnique({

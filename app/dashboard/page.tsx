@@ -4,6 +4,12 @@ import prisma from "@/utils/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React from "react";
 import { unstable_noStore as noStore } from "next/cache";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+
+}
 
 async function page() {
   noStore();

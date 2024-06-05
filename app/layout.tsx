@@ -5,8 +5,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FeedGrasp - Easy Feedbacks",
+  title: {
+    default: "FeedGrasp - Easy Feedbacks",
+    template: "%s - FeedGrasp"
+  },
   description: "Collect feedbacks from anyone easily and instantly using feedgrasp.",
+  twitter: {
+    card: "summary_large_image"
+  }
 };
 
 export default function RootLayout({
