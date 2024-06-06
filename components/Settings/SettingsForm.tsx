@@ -47,7 +47,7 @@ function SettingsForm({userDataStr}:{userDataStr:string}) {
       </label>
       <label className="form-control w-full ">
         <div className="label">
-          <span className="label-text">First Name</span>
+          <span className="label-text">Email</span>
         </div>
         <input
           type="text"

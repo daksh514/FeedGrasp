@@ -24,6 +24,7 @@ async function page() {
     select: {
       title: true,
       id: true,
+      responses: true
     },
   });
   return (
@@ -38,6 +39,7 @@ async function page() {
                 title={board.title}
                 link={board.id as string}
                 id={board.id}
+                length={board.responses.length}
               />
             );
           })}

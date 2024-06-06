@@ -4,6 +4,7 @@ import prisma from "@/utils/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Metadata } from "next";
 import { unstable_noStore } from "next/cache";
+import { notFound } from "next/navigation";
 import React from "react";
 
 
@@ -38,6 +39,8 @@ async function page({ params }: { params: { id: string } }) {
       id: true
     },
   });
+
+  if(!boardData) return notFound()
 
   const userInfo = await prisma.user.findUnique({
     where: {
