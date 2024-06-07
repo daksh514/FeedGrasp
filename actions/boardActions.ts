@@ -73,7 +73,6 @@ export async function deleteBoard(boardId: string) {
 }
 
 export async function updateBoard(boardId: string, formData: FormData) {
-    console.log(boardId);
     const formObject = {
         boardTitle: formData.get('boardTitle'),
         boardDescription: formData.get('boardDescription'),

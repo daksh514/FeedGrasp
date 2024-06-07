@@ -2,10 +2,13 @@ import BoardSettingsForm from '@/components/BoardSettings/BoardSettingsForm';
 import SettingsNav from '@/components/Settings/SettingsNav';
 import prisma from '@/utils/db';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { unstable_noStore } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react'
 
+
 async function page({params}:{params:{id: string}}) {
+    unstable_noStore()
     const {getUser} = getKindeServerSession()
     const user = await getUser()
     if(!user) redirect('/api/auth/login')
@@ -34,7 +37,6 @@ async function page({params}:{params:{id: string}}) {
     })
     if (!currentBoard) notFound()
     if(currentBoard.userId !== user?.id) return <h1>You are not authorized to do this action</h1>
-        console.log(currentBoard);
   return (
     <div>
         <div className='widthContainer'>

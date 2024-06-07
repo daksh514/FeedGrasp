@@ -13,5 +13,4 @@ export async function addMember(email: string){
         },
     })
 
-    console.log(data);
 }

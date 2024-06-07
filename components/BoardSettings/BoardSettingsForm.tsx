@@ -7,25 +7,28 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import SettingsFormBtn from "../Settings/SettingsFormBtn";
 import { updateBoard } from "@/actions/boardActions";
+import DownloadExcelBtn from "./DownloadExcelBtn";
 
 function BoardSettingsForm({ boardDataStr }: { boardDataStr: string }) {
   const boardData = JSON.parse(boardDataStr);
   async function formSubmit(formData: FormData) {
-    const isPrivate = formData.get('isPrivate');
-    const theme = formData.get('theme');
-    if(!theme) {formData.append('theme',boardData.theme)}
-    if (!isPrivate) {formData.append('isPrivate', 'off')}
+    const isPrivate = formData.get("isPrivate");
+    const theme = formData.get("theme");
+    if (!theme) {
+      formData.append("theme", boardData.theme);
+    }
+    if (!isPrivate) {
+      formData.append("isPrivate", "off");
+    }
 
-    const resStr = await updateBoard(boardData.id, formData)
+    const resStr = await updateBoard(boardData.id, formData);
     const res = JSON.parse(resStr);
 
-    if(res.status === 'success') {
-        toast.success(res.message)
-    } else if (res.status === "error"){
-        toast.error(res.message)
+    if (res.status === "success") {
+      toast.success(res.message);
+    } else if (res.status === "error") {
+      toast.error(res.message);
     }
-    
-
   }
   return (
     <form action={formSubmit} className="w-full flex flex-col gap-2">
@@ -82,24 +85,20 @@ function BoardSettingsForm({ boardDataStr }: { boardDataStr: string }) {
           </label>
           <label className="form-control w-full ">
             <div className="label">
-              <span className="label-text">
-                Name
-              </span>
+              <span className="label-text">Name</span>
             </div>
-            <select className="select select-bordered" name="theme">
-              <option selected={boardData.theme === "cupcake"} value={'cupcake'}>
-                Light
-              </option>
-              <option selected={boardData.theme === "dark"} value={'dark'}>Dark</option>
-              <option selected={boardData.theme === "sunset"} value={'sunset'}>Sunset</option>
-              <option selected={boardData.theme === "bumblebee"} value={'bumblebee'}>Bumblebee</option>
+            <select className="select select-bordered" name="theme" defaultValue={boardData.theme}>
+              <option value={"cupcake"}>Light</option>
+              <option value={"dark"}>Dark</option>
+              <option value={"sunset"}>Sunset</option>
+              <option value={"bumblebee"}>Bumblebee</option>
             </select>
-            
           </label>
         </div>
       </div>
 
       <SettingsFormBtn />
+      <DownloadExcelBtn responses={boardData.responses} />
     </form>
   );
 }

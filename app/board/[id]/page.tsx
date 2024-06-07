@@ -39,11 +39,18 @@ async function page({ params }: { params: { id: string } }) {
       description: true,
       userId: true,
       id: true,
-      theme: true
+      theme: true,
+      isPrivate: true
     },
   });
 
+  
+
   if(!boardData) return notFound()
+  const {getUser} = getKindeServerSession()
+  const user = await getUser()
+
+  if(boardData.isPrivate && boardData.userId !== user?.id ) return <h1>This board is private and can only be accessed by owner</h1>
 
   const userInfo = await prisma.user.findUnique({
     where: {
@@ -70,10 +77,8 @@ async function page({ params }: { params: { id: string } }) {
   }
 
   const responses = await findResponses()
-  // console.log(responses);
 
-  const {getUser} = getKindeServerSession()
-  const user = await getUser()
+  
 
   const userData = user ? await prisma.user.findUnique({
     where: {
