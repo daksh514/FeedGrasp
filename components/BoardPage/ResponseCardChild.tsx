@@ -7,7 +7,6 @@ function ResponseCardChild({ responseStr, upvotedByStr, userId }: { responseStr:
   const response = JSON.parse(responseStr);
   const upvotedBy = JSON.parse(upvotedByStr).upvotedBy;
 
-  console.log(response);
 
   const ifhasUpVoted = upvotedBy.some((vote: any) => {
     return vote.id === userId;

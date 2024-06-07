@@ -15,7 +15,6 @@ function BoardCard({
   id: string;
   length: number;
 }) {
-  console.log(length);
   return (
     <div>
       <div className="card w-full bg-base-300 shadow-xl min-h-0">

@@ -2,12 +2,22 @@
 
 import { deleteBoard } from '@/actions/boardActions'
 import { Settings } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import React from 'react'
+import toast from 'react-hot-toast'
+
 
 function SettingsBtn({boardId}:{boardId:string}) {
+  const router = useRouter()
     async function deleteBoardFunc(){
-        await deleteBoard(boardId)
+      toast.promise(deleteBoard(boardId), {
+        loading: 'Deleting board...',
+        success: 'Board deleted successfully',
+        error: 'Error deleting board'
+      })
     }
+
+  
   return (
     <div className="dropdown flex max-sm:dropdown-end">
               <button
@@ -22,7 +32,7 @@ function SettingsBtn({boardId}:{boardId:string}) {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 top-6 gap-2"
               >
                 <li>
-                  <button onClick={()=>console.log('clicks')} className=''>Edit</button>
+                  <button onClick={()=>router.push('/board/settings/'+boardId)} className=''>Settings</button>
                 </li>
                 <li>
                   <button onClick={()=>deleteBoardFunc()} className='text-error'>Delete</button>

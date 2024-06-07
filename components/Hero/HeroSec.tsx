@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { ArrowDown } from "lucide-react";
+import Link from "next/link";
 
 function HeroSec() {
   return (
@@ -15,7 +16,11 @@ function HeroSec() {
             Transform customer feedback into actionable insights. Empower your
             decisions with data that matters.
           </p>
-          <button className="btn btn-primary w-2/4 mt-5">Get Started</button>
+          <button className="btn btn-primary w-2/4 mt-5">
+          <Link href={'/dashboard'}>
+          Get Started
+          </Link>
+          </button>
         </div>
         <div className="w-full h-full flex items-center justify-center ">
           <div className="bg-white relative w-4/5 aspect-square rounded-xl max-md:max-w-md">

@@ -18,7 +18,6 @@ const boardSchema = z.object({
     })
 });
 export async function createResponse(formData: FormData) {
-    // console.log(formData.get('byName'));
     const boardData = {
         title: formData.get('title'),
         description: formData.get('description'),

@@ -4,6 +4,8 @@ import prisma from "@/utils/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Metadata } from "next";
 import { unstable_noStore } from "next/cache";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -36,7 +38,8 @@ async function page({ params }: { params: { id: string } }) {
       title: true,
       description: true,
       userId: true,
-      id: true
+      id: true,
+      theme: true
     },
   });
 
@@ -67,6 +70,7 @@ async function page({ params }: { params: { id: string } }) {
   }
 
   const responses = await findResponses()
+  // console.log(responses);
 
   const {getUser} = getKindeServerSession()
   const user = await getUser()
@@ -81,7 +85,7 @@ async function page({ params }: { params: { id: string } }) {
   }) : undefined
 
   return (
-    <div className=" overflow-x-hidden bg-white min-h-screen">
+    <div className={` overflow-x-hidden  min-h-screen  ${boardData.theme === "cupcake" || boardData.theme === "bumblebee" ? "bg-white":""}`} data-theme={boardData.theme}>
       <div className="widthContainer pb-10">
         
       <PageInfoComp
@@ -90,6 +94,19 @@ async function page({ params }: { params: { id: string } }) {
       />
       <ResponsesSec boardDataString={JSON.stringify(boardData)}  responsesJson={JSON.stringify(responses)} userInfo={userData != undefined ? JSON.stringify(userData) : undefined}/>
       </div>
+      <Link className='fixed bottom-8 right-8  ' href={'/'}>
+
+        <div className='flex gap-2 items-center bg-base-300 p-2 rounded-lg'>
+            <Image src="/Images/icon.png" width={40} height={40} alt="" className='rounded-md'/>
+            <div className="flex flex-col justify-center">
+
+            <h1 className='leading-none'>FeedGrasp</h1>
+            <p className='text-base-content/80 text-xs'>Start Collecting</p>
+            </div>
+
+
+        </div>
+        </Link>
     </div>
   );
 }

@@ -16,7 +16,6 @@ function NewResponseModal({boardId, firstName}:{boardId:string, firstName:string
   const [description, setDescription] = useState("");
   const [name, setName] = useState(firstName);
   const submitAction = async (formData: FormData) => {
-    // console.log(formData.get('byName'));
     formData.append('boardId', boardId)
     if(firstName !== undefined){
       formData.append('byName', firstName)

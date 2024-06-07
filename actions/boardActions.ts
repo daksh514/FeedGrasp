@@ -11,6 +11,19 @@ const boardSchema = z.object({
     }),
     description: z.string().optional(),
 });
+
+const updateBoardSchema = z.object({
+    boardTitle: z.string().min(1, {
+        message: 'Title is required'
+    }),
+    boardDescription: z.string().max(200, {
+        message: 'Description should be less than 200 characters'
+    }).optional(),
+    maxFeedbacks: z.number(),
+    theme: z.string(),
+    isPrivate: z.boolean()
+})
+
 export async function createBoard(formData: FormData) {
     const { getUser } = getKindeServerSession()
     const user = await getUser()
@@ -53,16 +66,45 @@ export async function deleteBoard(boardId: string) {
                 id: boardId
             }
         })
-
-        
     } catch (error) {
         console.log(error);
     }
-
-
     revalidatePath(`/dashboard`)
+}
 
-
-
-
+export async function updateBoard(boardId: string, formData: FormData) {
+    console.log(boardId);
+    const formObject = {
+        boardTitle: formData.get('boardTitle'),
+        boardDescription: formData.get('boardDescription'),
+        maxFeedbacks: Number(formData.get('maxFeedbacks')),
+        theme: formData.get('theme'),
+        isPrivate: formData.get('isPrivate') === 'on' ? true : false
+    }
+    const validated = updateBoardSchema.safeParse(formObject)
+    if(!validated.success){
+        return JSON.stringify({
+            status: 'error',
+            message: validated.error.issues[0].message
+        })
+    }
+    const prismaRes = await prisma.board.update(
+        {
+            where: {
+                id: boardId
+            }, 
+            data: {
+                title: validated.data.boardTitle,
+                description: validated.data.boardDescription,
+                maxFeedbacks: validated.data.maxFeedbacks,
+                theme: validated.data.theme,
+                isPrivate: validated.data.isPrivate,
+            }
+        }
+    )
+    return JSON.stringify({
+        status: 'success',
+        message: "Board Updated Successfuly"
+    })
+    
 }
